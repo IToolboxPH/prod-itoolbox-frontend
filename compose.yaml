@@ -1,4 +1,4 @@
-# itoolbox-web — local / on-premise deployment.
+# itoolbox-web — the IToolbox Platform's web client, for local / on-premise deployment.
 #
 #   docker compose up --build -d          # http://localhost:3100
 #
@@ -7,12 +7,20 @@
 #   (cd ../itoolbox-backend && docker compose up -d)   # api :8100
 #   docker compose up --build -d
 #
-# name: Docker Desktop lists the IToolbox stacks together by the "itoolbox_" prefix:
-# itoolbox_frontend, itoolbox_data-platform, itoolbox_zetaris-platform and
-# itoolbox_backend. Each repo is its own project, so
-# `docker compose down` here never touches the others. The service is named after
-# its container.
-name: itoolbox_frontend
+# Environments: this one file serves production and staging. Every default below is
+# what production has always run, and production's checkout has no .env. The staging
+# checkout (C:\IToolbox\staging\itoolbox-frontend) has a .env, from .env.staging.example,
+# that sets COMPOSE_PROJECT_NAME, ENV_SUFFIX, WEB_PORT, NEXT_PUBLIC_API_PORT and APP_ENV,
+# so staging gets its own project, container, image, port and API port, plus a STAGING
+# label on every page, and never touches production's. The picture as a whole is in
+# itoolbox-backend/docs/ENVIRONMENTS.md.
+#
+# name: Docker Desktop lists the IToolbox Platform stacks together by the "itoolbox_"
+# prefix: itoolbox_frontend, itoolbox_data-platform, itoolbox_zetaris-platform and
+# itoolbox_backend (staging adds itoolbox_staging_frontend and itoolbox_staging_backend).
+# Each repo is its own project, so `docker compose down` here never touches the others.
+# The service is named after its container.
+name: ${COMPOSE_PROJECT_NAME:-itoolbox_frontend}
 
 services:
   itoolbox-web:
@@ -24,11 +32,16 @@ services:
       args:
         # Reachable from the BROWSER, not from inside this container. Left unset,
         # lib/auth.ts's apiUrl() uses the scheme and host that served the page, on
-        # port 8100, which also covers the host's Tailscale link. Set it only when
-        # the API runs on another machine.
+        # NEXT_PUBLIC_API_PORT below, which also covers the host's Tailscale link. Set
+        # it only when the API runs on another machine.
         NEXT_PUBLIC_API_URL: "${NEXT_PUBLIC_API_URL:-}"
-    image: itoolbox-web
-    container_name: itoolbox-web
+        # The API's port on the page's own host: 8100 for production, 8110 for staging.
+        NEXT_PUBLIC_API_PORT: "${NEXT_PUBLIC_API_PORT:-8100}"
+        # "production" shows nothing. Anything else (staging) puts a label in the
+        # corner of every page, so the two can't be mistaken for each other.
+        NEXT_PUBLIC_APP_ENV: "${APP_ENV:-production}"
+    image: itoolbox-web${ENV_SUFFIX:-}
+    container_name: itoolbox-web${ENV_SUFFIX:-}
     ports:
       - "127.0.0.1:${WEB_PORT:-3100}:80"
     restart: unless-stopped

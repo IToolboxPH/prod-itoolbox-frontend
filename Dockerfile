@@ -17,8 +17,12 @@ FROM node:22-alpine AS build
 WORKDIR /repo
 
 ARG NEXT_PUBLIC_API_URL
+ARG NEXT_PUBLIC_API_PORT
+ARG NEXT_PUBLIC_APP_ENV
 
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL \
+    NEXT_PUBLIC_API_PORT=$NEXT_PUBLIC_API_PORT \
+    NEXT_PUBLIC_APP_ENV=$NEXT_PUBLIC_APP_ENV \
     NODE_ENV=production
 
 # .npmrc sets legacy-peer-deps=true; keep it with the lockfile so npm ci resolves

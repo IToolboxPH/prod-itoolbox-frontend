@@ -16,7 +16,7 @@ const SECTIONS = [
     border: "border-teal-400/40 dark:border-teal-500/30",
     bg: "bg-teal-50 dark:bg-teal-500/10",
     docs: [
-      { title: "Platform Overview",    desc: "The IToolbox Ecosystem Platform and its seven modules, with BantAI at the centre.",       tag: "Guide"     },
+      { title: "Platform Overview",    desc: "The IToolbox Platform and its seven modules, with BantAI at the centre.",                 tag: "Guide"     },
       { title: "Onboarding Checklist", desc: "Getting an account, signing in, and asking BantAI your first question.",                 tag: "Guide"     },
       { title: "Roles & Access",       desc: "What viewers, analysts, admins, and super admins can do, and how to request access.",    tag: "Reference" },
       { title: "Your IToolbox ID",     desc: "Your account profile, your role, and changing your password.",                          tag: "Guide"     },

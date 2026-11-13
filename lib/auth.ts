@@ -10,6 +10,10 @@ export interface AuthState {
 const TOKEN_KEY = "itoolbox_access_token";
 const USER_KEY = "itoolbox_user_profile";
 
+// The API's port on the page's own host (see apiUrl): 8100, or the NEXT_PUBLIC_API_PORT
+// baked in at build time. Staging's API listens on 8110.
+const API_PORT = process.env.NEXT_PUBLIC_API_PORT || "8100";
+
 // NEXT_PUBLIC_API_URL is baked in at build time (the static export doesn't read
 // env vars at runtime). When none was baked in, fall back to the scheme and host
 // the browser loaded this page from, on the API's default port, so a local or LAN
@@ -18,8 +22,8 @@ const USER_KEY = "itoolbox_user_profile";
 export function apiUrl(): string {
   const configured = process.env.NEXT_PUBLIC_API_URL;
   if (configured) return configured.replace(/\/$/, "");
-  if (typeof window !== "undefined") return `${window.location.protocol}//${window.location.hostname}:8100`;
-  return "http://localhost:8100";
+  if (typeof window !== "undefined") return `${window.location.protocol}//${window.location.hostname}:${API_PORT}`;
+  return `http://localhost:${API_PORT}`;
 }
 
 export function getStoredAuth(): AuthState {

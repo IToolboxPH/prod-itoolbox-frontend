@@ -1,6 +1,6 @@
 # itoolbox-frontend
 
-**Next.js 15 · React 19 · Tailwind — the web client for the IToolbox Ecosystem Platform.**
+**Next.js 15 · React 19 · Tailwind — the web client for the IToolbox Platform.**
 
 > One login, one dashboard, every tool.
 
@@ -100,6 +100,18 @@ NEXT_PUBLIC_API_URL=https://itoolbox.taildc9975.ts.net:8100 npm run dev
 Copy `.env.example` to `.env.local` first. Only `NEXT_PUBLIC_*` values belong in
 this repo — they ship to the browser. Model API keys, the JWT secret and the
 Zetaris credentials live in `itoolbox-backend`, never here.
+
+## Staging and production
+
+Production is the main checkout, with no `.env`: every default in `compose.yaml` is
+what runs today. Staging is a second checkout of this repo, on the `staging` branch,
+at `C:\IToolbox\staging\itoolbox-frontend`. Its `.env` (copied from
+`.env.staging.example`) gives it its own project, container, image and port (3110),
+its own API port (8110), and a **STAGING** label in the corner of every page, so both
+run on the host at once and can't be mistaken for each other. Start either with
+`server-setup\itoolbox-stack.ps1`. How a change moves from staging to production, and
+the Tailscale links, are in itoolbox-backend's
+[docs/ENVIRONMENTS.md](https://github.com/IToolboxPH/itoolbox-backend/blob/main/docs/ENVIRONMENTS.md).
 
 ## The BantAI page
 

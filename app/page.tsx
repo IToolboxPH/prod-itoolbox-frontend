@@ -146,7 +146,7 @@ const SLIDE_EXTRAS: Record<string, { num: string; hype: string; detail: string }
   docs: {
     num: "07",
     hype: "One place. All docs. BantAI and the platform — organized and always current.",
-    detail: "The documentation hub for BantAI and the IToolbox platform — user guides, the API reference, the architecture, and the SOPs. Admin-curated, with access by role.",
+    detail: "The documentation hub for BantAI and the IToolbox Platform — user guides, the API reference, the architecture, and the SOPs. Admin-curated, with access by role.",
   },
 };
 

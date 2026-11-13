@@ -13,7 +13,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // IToolbox brand palette — same values as the Ecosystem Platform's.
+        // IToolbox brand palette — same values as the IToolbox Platform's.
         itoolbox: {
           navy: "hsl(var(--itoolbox-navy))",
           red: "hsl(var(--itoolbox-red))",

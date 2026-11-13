@@ -127,7 +127,7 @@ export const PLATFORM_APPS: PlatformApp[] = [
     badge: "",
     title: "Docs",
     subtitle: "Comprehensive Documentation and Knowledge Base for Scalable Platforms.",
-    desc: "User guides, API reference, and architecture for BantAI and the IToolbox platform.",
+    desc: "User guides, API reference, and architecture for BantAI and the IToolbox Platform.",
     gradient: "from-teal-600 to-teal-800",
     border: "border-teal-500/30",
     accent: "text-teal-400",

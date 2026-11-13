@@ -1,5 +1,5 @@
 /**
- * Shared API contract for the IToolbox web client.
+ * Shared API contract for the IToolbox Platform web client.
  *
  * ─────────────────────────────────────────────────────────────────────────────
  * THIS FILE IS HAND-MAINTAINED. THE TYPES IT ALIASES ARE NOT.
