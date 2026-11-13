@@ -109,7 +109,7 @@ at `C:\IToolbox\staging\itoolbox-frontend`. Its `.env` (copied from
 `.env.staging.example`) gives it its own project, container, image and port (3110),
 its own API port (8110), and a **STAGING** label in the corner of every page, so both
 run on the host at once and can't be mistaken for each other. Start either with
-`server-setup\itoolbox-stack.ps1`. How a change moves from staging to production, and
+`server-setup/itoolbox_stack.py`. How a change moves from staging to production, and
 the Tailscale links, are in itoolbox-backend's
 [docs/ENVIRONMENTS.md](https://github.com/IToolboxPH/itoolbox-backend/blob/main/docs/ENVIRONMENTS.md).
 
